@@ -31,7 +31,7 @@ public class CallibrationActivity1 extends AppCompatActivity implements SensorEv
         setContentView(R.layout.activity_main);
         textView = findViewById(R.id.text);
         SensorManager mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        Sensor mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        Sensor mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_GAME_ROTATION_VECTOR);
         mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
         button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -76,7 +76,7 @@ public class CallibrationActivity1 extends AppCompatActivity implements SensorEv
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER && callibrating) {
+        if (event.sensor.getType() == Sensor.TYPE_GAME_ROTATION_VECTOR && callibrating) {
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i != 3; i++) {
                 sb.append(String.valueOf(event.values[i]));

@@ -19,13 +19,13 @@ public class FinalActivity extends AppCompatActivity implements SensorEventListe
         setContentView(R.layout.activity_final);
         textView = findViewById(R.id.textView);
         SensorManager mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        Sensor mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        Sensor mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_GAME_ROTATION_VECTOR);
         mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+        if (event.sensor.getType() == Sensor.TYPE_GAME_ROTATION_VECTOR) {
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i != 3; i++) {
                 sb.append(String.valueOf(event.values[i]));
